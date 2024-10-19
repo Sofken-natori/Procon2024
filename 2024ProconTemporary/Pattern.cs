@@ -8,7 +8,7 @@ namespace _2024ProconTemporary
 {
     public class Pattern
     {
-       public static List<List<List<int>>> PatternList = new List<List<List<int>>>();
+        public static List<List<List<int>>> PatternList = new List<List<List<int>>>();
 
         public static void Patterns()
         {
@@ -42,12 +42,12 @@ namespace _2024ProconTemporary
             PatternList[256][0].Add(1);
             int a = 0;
             for (i = 1, j = 2; j <= 256; i++, j = Math.Pow(2, i))
-            { 
+            {
                 for (int l = 1; k <= 3 * i; k++, l++)
                 {
                     PatternList.Add(new List<List<int>>());
-                    PatternList[k + 256] = PatternAssignment(PatternList[k + 256], l,i,i);
-                    
+                    PatternList[k + 256] = PatternAssignment(PatternList[k + 256], l, i, i);
+
                 }
                 a++;
             }
@@ -55,12 +55,12 @@ namespace _2024ProconTemporary
 
         }
 
-        
 
 
-        public static List<List<int>> PatternAssignment(List<List<int>> PatternList, int Type, int Warp,int Side)
+
+        public static List<List<int>> PatternAssignment(List<List<int>> PatternList, int Type, int Warp, int Side)
         {
-            
+
             if (Type == 1)
             {
 
@@ -78,7 +78,7 @@ namespace _2024ProconTemporary
             }
             else if (Type == 2)
             {
-                for (int y = 0; y < Warp; y ++)
+                for (int y = 0; y < Warp; y++)
                 {
                     PatternList.Add(new List<int>());
                     for (int x = 0; x < Side; x++)
