@@ -192,6 +192,7 @@ namespace _2024ProconTemporary
                 }
             }
 
+
         }
         static (List<List<int>>, int, List<AnswerData.OperationData>) FirstSort(List<List<int>> queses, List<List<int>> answer, DieCutting dieCutting, List<AnswerData.OperationData> Ops, List<List<List<int>>> PatternList, int[][] WantListX, int[][] WantListY, int[][] WantListXS)
         {
@@ -583,13 +584,16 @@ namespace _2024ProconTemporary
             return IndexList[1][Y];
         }
         public static (List<int>, List<int>) EvaluationMaxValue(List<List<int>> Ques, List<List<int>> Ans, List<List<List<int>>> WantTypeIndex)
+        public static (List<int>, List<int>) EvaluationMaxValue(List<List<int>> Ques, List<List<int>> Ans, List<List<List<int>>> WantTypeIndex)
         {
             var MaxTypeEvaluationValueListWarp = new List<int>();
             var MaxTypeEvaluationValueListSide = new List<int>();
             var WantTypeIndexWarp = Case.TranslatePos(WantTypeIndex[1]);
+            var WantTypeIndexWarp = Case.TranslatePos(WantTypeIndex[1]);
             //配列大きさ順にソートして、はみ出す分はゼロに置く
             for (var Y = 0; Y < Ques.Count; Y++)
             {
+                MaxTypeEvaluationValueListSide.Add(WantTypeIndex[1][Y].Count);
                 MaxTypeEvaluationValueListSide.Add(WantTypeIndex[1][Y].Count);
             }
             for (var X = 0; X < Ques[0].Count; X++)
@@ -597,12 +601,14 @@ namespace _2024ProconTemporary
                 MaxTypeEvaluationValueListWarp.Add(WantTypeIndex[1][X].Count);
             }
             return (MaxTypeEvaluationValueListSide, MaxTypeEvaluationValueListWarp);
+            return (MaxTypeEvaluationValueListSide, MaxTypeEvaluationValueListWarp);
         }
         static AnswerData.OperationData.Side SCheck(int num)
         {
             if (num == 0)
             {
                 return AnswerData.OperationData.Side.Up;
+
 
             }
             else if (num == 1)
@@ -643,6 +649,7 @@ namespace _2024ProconTemporary
                     Test[Y, WantTypeIndex[1][Y][X]] = 1;
                 }
             }
+
 
 
         }
@@ -756,6 +763,7 @@ namespace _2024ProconTemporary
             ListNumberList.Add(0);
             ListNumberList.Add(0);
 
+
             //EvolusionValue();
             return ListNumberList;
         }
@@ -766,353 +774,370 @@ namespace _2024ProconTemporary
              {
                  for(int X = ListNumberList[i +1 ]; X < )
                  {
+            /* for(int i = 0; i < ListNumberList.Count; i+=3)
+             {
+                 for(int X = ListNumberList[i +1 ]; X < )
+                 {
 
                  }
              }
             */
+        }
+    }
+            */
             return 0;
         }
+public static int Not(List<List<int>> WantIndexDifferenceList)
         public static int Not(List<List<int>> WantIndexDifferenceList)
+{
+    return 0;
+}
+public static int Motto(List<List<int>> WantIndexDifferenceList)
+{
+    //基準の1を数えて超えたやつのみの評価値
+    for (int i = 0; i < 281; i++)
+        for (int i = 0; i < 281; i++)
         {
-            return 0;
-        }
-        public static int Motto(List<List<int>> WantIndexDifferenceList)
-        {
-            //基準の1を数えて超えたやつのみの評価値
-            for (int i = 0; i < 281; i++)
-            {
 
-            }
-
-            return 0;
         }
-        public static List<List<int>> WantIndexDifferenceValue(List<List<List<int>>> WantTypeIndex, int i)
+
+    return 0;
+}
+public static List<List<int>> WantIndexDifferenceValue(List<List<List<int>>> WantTypeIndex, int i)
+{
+    var List = new List<List<int>>();
+    for (int Y = 0; Y < WantTypeIndex[i].Count; Y++)
+    {
+        List.Add(new List<int>());
+        for (int X = WantTypeIndex[i][Y].Count - 2; 0 < X; X--)
         {
-            var List = new List<List<int>>();
-            for (int Y = 0; Y < WantTypeIndex[i].Count; Y++)
-            {
-                List.Add(new List<int>());
-                for (int X = WantTypeIndex[i][Y].Count - 2; 0 < X; X--)
+            List[Y].Add(WantTypeIndex[i][Y][X] - WantTypeIndex[i][Y][X + 1]);
+        }
+    }
+    return List;
+}
+
+
+public static void PatternDifferenceValue(List<List<List<int>>> PatternList)
+{
+    //横と縦の期待値
+    //var X = 0;
+
+    for (int i = 0; i < PatternList.Count; i++)
+    {
+        PatternZeroDifferenceList.Add(new List<List<List<int>>>());
+        for (int Y = 0; Y < ZeroIndexList[i].Count; Y++)
+        {
+            PatternZeroDifferenceList[i].Add(new List<List<int>>());
+            PatternZeroDifferenceList[i][Y].Add(new List<int>());
+            for (int IntervalX = 1; IntervalX < ZeroIndexList[i][Y].Count; IntervalX++)
+                for (int IntervalX = 1; IntervalX < ZeroIndexList[i][Y].Count; IntervalX++)
                 {
-                    List[Y].Add(WantTypeIndex[i][Y][X] - WantTypeIndex[i][Y][X + 1]);
+
+                    PatternZeroDifferenceList[i][Y][0].Add(ZeroIndexList[i][Y][IntervalX] - ZeroIndexList[i][Y][0]);
                 }
-            }
-            return List;
-        }
-
-        public static void PatternDifferenceValue(List<List<List<int>>> PatternList)
-        {
-            //横と縦の期待値
-            //var X = 0;
-
-            for (int i = 0; i < PatternList.Count; i++)
-            {
-                PatternZeroDifferenceList.Add(new List<List<List<int>>>());
-                for (int Y = 0; Y < ZeroIndexList[i].Count; Y++)
+            for (int X = 1; X < PatternZeroDifferenceList[i][Y][0].Count; X++)
+                for (int X = 1; X < PatternZeroDifferenceList[i][Y][0].Count; X++)
                 {
-                    PatternZeroDifferenceList[i].Add(new List<List<int>>());
                     PatternZeroDifferenceList[i][Y].Add(new List<int>());
-                    for (int IntervalX = 1; IntervalX < ZeroIndexList[i][Y].Count; IntervalX++)
-                    {
-
-                        PatternZeroDifferenceList[i][Y][0].Add(ZeroIndexList[i][Y][IntervalX] - ZeroIndexList[i][Y][0]);
-                    }
-                    for (int X = 1; X < PatternZeroDifferenceList[i][Y][0].Count; X++)
-                    {
-                        PatternZeroDifferenceList[i][Y].Add(new List<int>());
-                        var Number = ZeroIndexList[i][Y][X] - ZeroIndexList[i][Y][X - 1];
-                        PatternZeroDifferenceList[i][Y].Add(PatternZeroDifferenceList[i][Y][X - 1].Select(item => item - Number).ToList());
-                        PatternZeroDifferenceList[i][Y].RemoveAt(0);
-                    }
+                    var Number = ZeroIndexList[i][Y][X] - ZeroIndexList[i][Y][X - 1];
+                    PatternZeroDifferenceList[i][Y].Add(PatternZeroDifferenceList[i][Y][X - 1].Select(item => item - Number).ToList());
+                    var Number = ZeroIndexList[i][Y][X] - ZeroIndexList[i][Y][X - 1];
+                    PatternZeroDifferenceList[i][Y].Add(PatternZeroDifferenceList[i][Y][X - 1].Select(item => item - Number).ToList());
+                    PatternZeroDifferenceList[i][Y].RemoveAt(0);
                 }
-                PatternOneDifferenceList.Add(new List<List<List<int>>>());
-                for (int Y = 0; Y < OneIndexList[i].Count; Y++)
-                {
-                    PatternOneDifferenceList[i].Add(new List<List<int>>());
-                    PatternOneDifferenceList[i][Y].Add(new List<int>());
-                    for (int IntervalX = 1; IntervalX < OneIndexList[i][Y].Count; IntervalX++)
-                    {
-
-                        PatternOneDifferenceList[i][Y][0].Add(OneIndexList[i][Y][IntervalX] - OneIndexList[i][Y][0]);
-                    }
-                    for (int X = 1; X < PatternOneDifferenceList[i][Y][0].Count; X++)
-                    {
-                        PatternOneDifferenceList[i][Y].Add(new List<int>());
-                        var Number = OneIndexList[i][Y][X] - OneIndexList[i][Y][X - 1];
-                        PatternOneDifferenceList[i][Y].Add(PatternOneDifferenceList[i][Y][X - 1].Select(item => item - Number).ToList());
-
-                        PatternOneDifferenceList[i][Y].RemoveAt(0);
-
-                    }
-                }
-            }
-            //foreach (int i in PatternSizeListOver)
-
-
         }
-
-
-        public static void PatternCount(List<List<int>> Ques, List<List<List<int>>> PatternList)
+        PatternOneDifferenceList.Add(new List<List<List<int>>>());
+        for (int Y = 0; Y < OneIndexList[i].Count; Y++)
         {
-            ZeroIndexList = new List<List<List<int>>>();
-            OneIndexList = new List<List<List<int>>>();
-            for (int i = 0; i < PatternList.Count; i++)
+            PatternOneDifferenceList[i].Add(new List<List<int>>());
+            PatternOneDifferenceList[i][Y].Add(new List<int>());
+            for (int IntervalX = 1; IntervalX < OneIndexList[i][Y].Count; IntervalX++)
+                for (int IntervalX = 1; IntervalX < OneIndexList[i][Y].Count; IntervalX++)
+                {
+
+                    PatternOneDifferenceList[i][Y][0].Add(OneIndexList[i][Y][IntervalX] - OneIndexList[i][Y][0]);
+                }
+            for (int X = 1; X < PatternOneDifferenceList[i][Y][0].Count; X++)
             {
-                ZeroIndexList.Add(new List<List<int>>());
-                OneIndexList.Add(new List<List<int>>());
-                for (int Y = 0; Y < PatternList[i].Count; Y++)
-                {
-                    ZeroIndexList[i].Add(new List<int>());
-                    OneIndexList[i].Add(new List<int>());
-                    for (int X = 0; X < PatternList[i][Y].Count; X++)
-                    {
-                        if (PatternList[i][Y][X] == 0)
-                        {
-                            ZeroIndexList[i][Y].Add(X);
-                        }
-                        else if (PatternList[i][Y][X] == 1)
-                        {
-                            OneIndexList[i][Y].Add(X);
-                        }
+                PatternOneDifferenceList[i][Y].Add(new List<int>());
+                var Number = OneIndexList[i][Y][X] - OneIndexList[i][Y][X - 1];
+                PatternOneDifferenceList[i][Y].Add(PatternOneDifferenceList[i][Y][X - 1].Select(item => item - Number).ToList());
 
-                    }
+                PatternOneDifferenceList[i][Y].RemoveAt(0);
 
-                    if (ZeroIndexList[i][Y].Count == 0)
-                    {
-                        ZeroIndexList[i][Y].Add(0);
-                    }
-                    if (OneIndexList[i][Y].Count == 0)
-                    {
-                        OneIndexList[i][Y].Add(0);
-                    }
-
-                }
-                if (PatternList[i].Count >= Ques.Count)
-                {
-                    if (PatternList[i][0].Count >= Ques[0].Count)
-                    {
-                        PatternSizeListOver.Add(i);
-                        continue;
-                    }
-                }
-                PatternSizeListNotOver.Add(i);
             }
         }
-        public static void IndexCount(List<List<int>> Ques, int pieceX, int pieceY)
+    }
+    //foreach (int i in PatternSizeListOver)
+
+
+}
+
+
+public static void PatternCount(List<List<int>> Ques, List<List<List<int>>> PatternList)
+{
+    ZeroIndexList = new List<List<List<int>>>();
+    OneIndexList = new List<List<List<int>>>();
+    for (int i = 0; i < PatternList.Count; i++)
+    {
+        ZeroIndexList.Add(new List<List<int>>());
+        OneIndexList.Add(new List<List<int>>());
+        for (int Y = 0; Y < PatternList[i].Count; Y++)
         {
-            NumberIndexList = new List<List<List<int>>>();
-
-            for (int Number = 0; Number < 4; Number++)
+            ZeroIndexList[i].Add(new List<int>());
+            OneIndexList[i].Add(new List<int>());
+            for (int X = 0; X < PatternList[i][Y].Count; X++)
             {
-                NumberIndexList.Add(new List<List<int>>());
-                for (int Y = 0; Y < pieceY; Y++)
+                if (PatternList[i][Y][X] == 0)
                 {
-                    NumberIndexList[Number].Add(new List<int>());
-                    for (int X = 0; X < pieceX; X++)
-                    {
-                        if (Ques[Y][X] == Number)
-                        {
-                            NumberIndexList[Number][Y].Add(X);
-                        }
-
-
-                    }
-
-                    if (NumberIndexList[Number][Y].Count == 0)
-                    {
-                        NumberIndexList[Number][Y].Add(0);
-                    }
-
+                    ZeroIndexList[i][Y].Add(X);
                 }
+                else if (PatternList[i][Y][X] == 1)
+                {
+                    OneIndexList[i][Y].Add(X);
+                }
+
             }
 
+            if (ZeroIndexList[i][Y].Count == 0)
+            {
+                ZeroIndexList[i][Y].Add(0);
+            }
+            if (OneIndexList[i][Y].Count == 0)
+            {
+                OneIndexList[i][Y].Add(0);
+            }
 
         }
+        if (PatternList[i].Count >= Ques.Count)
+        {
+            if (PatternList[i][0].Count >= Ques[0].Count)
+            {
+                PatternSizeListOver.Add(i);
+                continue;
+            }
+        }
+        PatternSizeListNotOver.Add(i);
+    }
+}
+public static void IndexCount(List<List<int>> Ques, int pieceX, int pieceY)
+{
+    NumberIndexList = new List<List<List<int>>>();
+
+
+    for (int Number = 0; Number < 4; Number++)
+    {
+        NumberIndexList.Add(new List<List<int>>());
+        for (int Y = 0; Y < pieceY; Y++)
+        {
+            NumberIndexList[Number].Add(new List<int>());
+            for (int X = 0; X < pieceX; X++)
+            {
+                if (Ques[Y][X] == Number)
+                {
+                    NumberIndexList[Number][Y].Add(X);
+                }
+
+
+            }
+
+            if (NumberIndexList[Number][Y].Count == 0)
+            {
+                NumberIndexList[Number][Y].Add(0);
+            }
+
+        }
+    }
+
+
+}
+public static float Check(List<List<int>> ans, List<List<int>> queues, int pieceX, int pieceY)
         public static float Check(List<List<int>> ans, List<List<int>> queues, int pieceX, int pieceY)
+{
+    var mass = pieceX * pieceY;
+    float match = 100f / mass;
+    float matchR = 0;
+    for (int y = 0; y < pieceY; y++)
+    {
+        for (int x = 0; x < pieceX; x++)
         {
-            var mass = pieceX * pieceY;
-            float match = 100f / mass;
-            float matchR = 0;
-            for (int y = 0; y < pieceY; y++)
+            if (ans[y][x] == queues[y][x])
             {
-                for (int x = 0; x < pieceX; x++)
-                {
-                    if (ans[y][x] == queues[y][x])
-                    {
-                        matchR += match;
-                    }
-
-                }
-            }
-            return matchR;
-        }
-        public static void Test()
-        {
-
-        }
-
-        public static (int, int, int, int) SearchDie(List<List<int>> ques, List<List<int>> ans, bool T, List<List<List<int>>> PatternList)
-        {
-            int useDieNum = 0;
-            int cuttingDirection = 0;
-            int usingPositionX = 0;
-            int usingPositionY = 0;
-            int nowMaxEffectiveScore = 0;
-            List<List<int>> collectPieceArray = CreateCollectPieceArray(ques, ans, T);
-
-            // 仕様メモ
-            // 左端、もしくは右端を固定し、一方向にしか動かないようにする
-            // for文を回して、どの型が一番効率的かを計算する
-            // 効率的かどうかは、(揃ったピースの数-揃わなくなったピースの数)で判断する
-            // 効率的なものを見つけたら、使うべき型、使うべき座標を返す
-            if (T)
-            {
-                for (int useDieIndex = 0; useDieIndex < PatternList.Count; useDieIndex++)
-                {
-                    for (int x = 0; x < Xmax; x++)
-                    {
-                        for (int y = 0; y < Ymax; y++)
-                        {
-                            int DownCuttingEffectiveScore;
-                            int UPCuttingEffectiveScore;
-                            List<List<int>> tempQues = Case.Copy(ques);
-                            List<List<int>> tempAns = Case.Copy(ans);
-                            List<List<int>> UPCuttingQues = Case.DieCuttingUP(tempQues, PatternList[useDieIndex], x, y, PatternList[useDieIndex][0].Count, PatternList[useDieIndex].Count);
-                            List<List<int>> DownCuttingQues = Case.DieCuttingDown(tempQues, PatternList[useDieIndex], x, y, PatternList[useDieIndex][0].Count, PatternList[useDieIndex].Count);
-
-                            List<List<int>> UPCuttingCollectPieceArray = CreateCollectPieceArray(UPCuttingQues, tempAns, T);
-                            List<List<int>> DownCuttingCollectPieceArray = CreateCollectPieceArray(DownCuttingQues, tempAns, T);
-
-                            DownCuttingEffectiveScore = CalculateEffectiveScore(collectPieceArray, DownCuttingCollectPieceArray, T);
-                            UPCuttingEffectiveScore = CalculateEffectiveScore(collectPieceArray, UPCuttingCollectPieceArray, T);
-
-                            if (MathF.Max(DownCuttingEffectiveScore, UPCuttingEffectiveScore) > nowMaxEffectiveScore)
-                            {
-                                nowMaxEffectiveScore = (int)MathF.Max(DownCuttingEffectiveScore, UPCuttingEffectiveScore);
-                                if (DownCuttingEffectiveScore > UPCuttingEffectiveScore)
-                                {
-                                    cuttingDirection = 1;
-                                }
-                                else
-                                {
-                                    cuttingDirection = 0;
-                                }
-                                useDieNum = useDieIndex;
-                                usingPositionX = x;
-                                usingPositionY = y;
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                for (int useDieIndex = 0; useDieIndex < PatternList.Count; useDieIndex++)
-                {
-                    for (int x = 0; x < Xmax; x++)
-                    {
-                        for (int y = 0; y < Ymax; y++)
-                        {
-                            int rightCuttingEffectiveScore;
-                            int leftCuttingEffectiveScore;
-                            List<List<int>> tempQues = Case.Copy(ques);
-                            List<List<int>> tempAns = Case.Copy(ans);
-                            List<List<int>> leftCuttingQues = Case.DieCuttingLeft(tempQues, PatternList[useDieIndex], x, y, PatternList[useDieIndex][0].Count, PatternList[useDieIndex].Count);
-                            List<List<int>> rightCuttingQues = Case.DieCuttingRight(tempQues, PatternList[useDieIndex], x, y, PatternList[useDieIndex][0].Count, PatternList[useDieIndex].Count);
-
-                            List<List<int>> leftCuttingCollectPieceArray = CreateCollectPieceArray(leftCuttingQues, tempAns, T);
-                            List<List<int>> rightCuttingCollectPieceArray = CreateCollectPieceArray(rightCuttingQues, tempAns, T);
-
-                            rightCuttingEffectiveScore = CalculateEffectiveScore(collectPieceArray, rightCuttingCollectPieceArray, T);
-                            leftCuttingEffectiveScore = CalculateEffectiveScore(collectPieceArray, leftCuttingCollectPieceArray, T);
-
-                            if (MathF.Max(rightCuttingEffectiveScore, leftCuttingEffectiveScore) > nowMaxEffectiveScore)
-                            {
-                                nowMaxEffectiveScore = (int)MathF.Max(rightCuttingEffectiveScore, leftCuttingEffectiveScore);
-                                if (rightCuttingEffectiveScore > leftCuttingEffectiveScore)
-                                {
-                                    cuttingDirection = 3;
-                                }
-                                else
-                                {
-                                    cuttingDirection = 2;
-                                }
-                                useDieNum = useDieIndex;
-                                usingPositionX = x;
-                                usingPositionY = y;
-                            }
-                        }
-                    }
-                }
+                matchR += match;
             }
 
-
-            return (useDieNum, cuttingDirection, usingPositionX, usingPositionY);
-
         }
+    }
+    return matchR;
+}
+public static void Test()
+{
 
-        static int CalculateEffectiveScore(List<List<int>> beforeCollectPieceArray, List<List<int>> afterCollectPieceArray, bool T)
+}
+
+public static (int, int, int, int) SearchDie(List<List<int>> ques, List<List<int>> ans, bool T, List<List<List<int>>> PatternList)
+{
+    int useDieNum = 0;
+    int cuttingDirection = 0;
+    int usingPositionX = 0;
+    int usingPositionY = 0;
+    int nowMaxEffectiveScore = 0;
+    List<List<int>> collectPieceArray = CreateCollectPieceArray(ques, ans, T);
+
+    // 仕様メモ
+    // 左端、もしくは右端を固定し、一方向にしか動かないようにする
+    // for文を回して、どの型が一番効率的かを計算する
+    // 効率的かどうかは、(揃ったピースの数-揃わなくなったピースの数)で判断する
+    // 効率的なものを見つけたら、使うべき型、使うべき座標を返す
+    if (T)
+    {
+        for (int useDieIndex = 0; useDieIndex < PatternList.Count; useDieIndex++)
         {
-            int effectiveScore = 0;
-            if (T)
+            for (int x = 0; x < Xmax; x++)
             {
                 for (int y = 0; y < Ymax; y++)
                 {
-                    for (int x = 0; x < Xmax; x++)
+                    int DownCuttingEffectiveScore;
+                    int UPCuttingEffectiveScore;
+                    List<List<int>> tempQues = Case.Copy(ques);
+                    List<List<int>> tempAns = Case.Copy(ans);
+                    List<List<int>> UPCuttingQues = Case.DieCuttingUP(tempQues, PatternList[useDieIndex], x, y, PatternList[useDieIndex][0].Count, PatternList[useDieIndex].Count);
+                    List<List<int>> DownCuttingQues = Case.DieCuttingDown(tempQues, PatternList[useDieIndex], x, y, PatternList[useDieIndex][0].Count, PatternList[useDieIndex].Count);
+
+                    List<List<int>> UPCuttingCollectPieceArray = CreateCollectPieceArray(UPCuttingQues, tempAns, T);
+                    List<List<int>> DownCuttingCollectPieceArray = CreateCollectPieceArray(DownCuttingQues, tempAns, T);
+
+                    DownCuttingEffectiveScore = CalculateEffectiveScore(collectPieceArray, DownCuttingCollectPieceArray, T);
+                    UPCuttingEffectiveScore = CalculateEffectiveScore(collectPieceArray, UPCuttingCollectPieceArray, T);
+
+                    if (MathF.Max(DownCuttingEffectiveScore, UPCuttingEffectiveScore) > nowMaxEffectiveScore)
                     {
-                        effectiveScore += (int)beforeCollectPieceArray[x][y] - afterCollectPieceArray[x][y];
+                        nowMaxEffectiveScore = (int)MathF.Max(DownCuttingEffectiveScore, UPCuttingEffectiveScore);
+                        if (DownCuttingEffectiveScore > UPCuttingEffectiveScore)
+                        {
+                            cuttingDirection = 1;
+                        }
+                        else
+                        {
+                            cuttingDirection = 0;
+                        }
+                        useDieNum = useDieIndex;
+                        usingPositionX = x;
+                        usingPositionY = y;
                     }
                 }
             }
-            else
+        }
+    }
+    else
+    {
+        for (int useDieIndex = 0; useDieIndex < PatternList.Count; useDieIndex++)
+        {
+            for (int x = 0; x < Xmax; x++)
             {
                 for (int y = 0; y < Ymax; y++)
                 {
-                    for (int x = 0; x < Xmax; x++)
+                    int rightCuttingEffectiveScore;
+                    int leftCuttingEffectiveScore;
+                    List<List<int>> tempQues = Case.Copy(ques);
+                    List<List<int>> tempAns = Case.Copy(ans);
+                    List<List<int>> leftCuttingQues = Case.DieCuttingLeft(tempQues, PatternList[useDieIndex], x, y, PatternList[useDieIndex][0].Count, PatternList[useDieIndex].Count);
+                    List<List<int>> rightCuttingQues = Case.DieCuttingRight(tempQues, PatternList[useDieIndex], x, y, PatternList[useDieIndex][0].Count, PatternList[useDieIndex].Count);
+
+                    List<List<int>> leftCuttingCollectPieceArray = CreateCollectPieceArray(leftCuttingQues, tempAns, T);
+                    List<List<int>> rightCuttingCollectPieceArray = CreateCollectPieceArray(rightCuttingQues, tempAns, T);
+
+                    rightCuttingEffectiveScore = CalculateEffectiveScore(collectPieceArray, rightCuttingCollectPieceArray, T);
+                    leftCuttingEffectiveScore = CalculateEffectiveScore(collectPieceArray, leftCuttingCollectPieceArray, T);
+
+                    if (MathF.Max(rightCuttingEffectiveScore, leftCuttingEffectiveScore) > nowMaxEffectiveScore)
                     {
-                        effectiveScore += (int)beforeCollectPieceArray[x][y] - afterCollectPieceArray[x][y];
+                        nowMaxEffectiveScore = (int)MathF.Max(rightCuttingEffectiveScore, leftCuttingEffectiveScore);
+                        if (rightCuttingEffectiveScore > leftCuttingEffectiveScore)
+                        {
+                            cuttingDirection = 3;
+                        }
+                        else
+                        {
+                            cuttingDirection = 2;
+                        }
+                        useDieNum = useDieIndex;
+                        usingPositionX = x;
+                        usingPositionY = y;
                     }
                 }
             }
-
-
-            return effectiveScore;
         }
+    }
 
-        static List<List<int>> CreateCollectPieceArray(List<List<int>> ques, List<List<int>> ans, bool T)
+
+    return (useDieNum, cuttingDirection, usingPositionX, usingPositionY);
+
+}
+
+static int CalculateEffectiveScore(List<List<int>> beforeCollectPieceArray, List<List<int>> afterCollectPieceArray, bool T)
+{
+    int effectiveScore = 0;
+    if (T)
+    {
+        for (int y = 0; y < Ymax; y++)
         {
-            if (T)
+            for (int x = 0; x < Xmax; x++)
             {
-                List<List<int>> collectPieceArray = new List<List<int>>();
-                for (int x = 0; x < Xmax; x++)
-                {
-                    List<int> collectPieceRaw = new List<int>();
-                    for (int y = 0; y < Ymax; y++)
-                    {
-                        if (ques[x][y] == ans[x][y]) collectPieceRaw.Add(1);
-                        else collectPieceRaw.Add(0);
-                    }
-                    collectPieceArray.Add(collectPieceRaw);
-                }
-                return collectPieceArray;
+                effectiveScore += (int)beforeCollectPieceArray[x][y] - afterCollectPieceArray[x][y];
             }
-            else
-            {
-                List<List<int>> collectPieceArray = new List<List<int>>();
-                for (int x = 0; x < Xmax; x++)
-                {
-                    List<int> collectPieceRaw = new List<int>();
-                    for (int y = 0; y < Ymax; y++)
-                    {
-                        if (ques[y][x] == ans[y][x]) collectPieceRaw.Add(1);
-                        else collectPieceRaw.Add(0);
-                    }
-                    collectPieceArray.Add(collectPieceRaw);
-                }
-                return collectPieceArray;
-            }
-
         }
+    }
+    else
+    {
+        for (int y = 0; y < Ymax; y++)
+        {
+            for (int x = 0; x < Xmax; x++)
+            {
+                effectiveScore += (int)beforeCollectPieceArray[x][y] - afterCollectPieceArray[x][y];
+            }
+        }
+    }
+
+
+    return effectiveScore;
+}
+
+static List<List<int>> CreateCollectPieceArray(List<List<int>> ques, List<List<int>> ans, bool T)
+{
+    if (T)
+    {
+        List<List<int>> collectPieceArray = new List<List<int>>();
+        for (int x = 0; x < Xmax; x++)
+        {
+            List<int> collectPieceRaw = new List<int>();
+            for (int y = 0; y < Ymax; y++)
+            {
+                if (ques[x][y] == ans[x][y]) collectPieceRaw.Add(1);
+                else collectPieceRaw.Add(0);
+            }
+            collectPieceArray.Add(collectPieceRaw);
+        }
+        return collectPieceArray;
+    }
+    else
+    {
+        List<List<int>> collectPieceArray = new List<List<int>>();
+        for (int x = 0; x < Xmax; x++)
+        {
+            List<int> collectPieceRaw = new List<int>();
+            for (int y = 0; y < Ymax; y++)
+            {
+                if (ques[y][x] == ans[y][x]) collectPieceRaw.Add(1);
+                else collectPieceRaw.Add(0);
+            }
+            collectPieceArray.Add(collectPieceRaw);
+        }
+        return collectPieceArray;
+    }
+
+}
 
     }
 
